@@ -9,10 +9,10 @@ class MovieList extends StatelessWidget {
     return ListView(
       children: [
         ListWidget(
-          title: 'Ultimos Lanzamientos',
+          header: 'Ultimos Lanzamientos',
         ),
         ListWidget(
-          title: 'Populares',
+          header: 'Populares',
         ),
       ],
     );

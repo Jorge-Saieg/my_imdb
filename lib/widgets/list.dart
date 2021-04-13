@@ -5,24 +5,27 @@ import 'package:my_imdb/widgets/card.dart';
 import 'package:provider/provider.dart';
 
 class ListWidget extends StatelessWidget {
-  final title;
+  final header;
   final movie;
 
   const ListWidget({
     Key key,
-    this.title,
+    this.header,
     this.movie,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final prov = Provider.of<LatestProvider>(context,
+        listen: false); /* le agregue esto... */
+    prov.getMovies(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(15, 20, 0, 0),
           child: Text(
-            title,
+            header,
             style: GoogleFonts.montserrat(
                 textStyle: TextStyle(
               fontWeight: FontWeight.bold,
@@ -38,8 +41,8 @@ class ListWidget extends StatelessWidget {
               itemCount: 3,
               itemBuilder: (context, index) => MovieCard(
                 //aca me devuelve null no se bien que esta mal debe ser algo del provider en el archivo get_latest mil gracias...
-                title: data.getMovie.title,
-                imgUrl: data.getMovie.mainImg,
+                title: prov.latest,
+                imgUrl: data.latest,
               ),
               scrollDirection: Axis.horizontal,
               // shrinkWrap: true,

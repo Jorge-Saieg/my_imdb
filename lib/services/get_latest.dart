@@ -3,29 +3,38 @@ import 'package:flutter/material.dart';
 import 'package:my_imdb/classes/movie.dart';
 
 class LatestProvider extends ChangeNotifier {
-  String _title;
-  String _mainImg;
+  // String _title;
+  // String _mainImg;
 
-  String get title => _title;
+  // String get title => _title;
 
-  set title(String title) {
-    _title = title;
+  // set title(String title) {
+  //   _title = title;
+  //   notifyListeners();
+  // }
+
+  // get mainImg => _mainImg;
+
+  // set mainImg(String mainImg) {
+  //   _mainImg = mainImg;
+  //   notifyListeners();
+  // }
+
+  // LatestProvider.init() {
+  //   getLatest();
+  // }
+
+  List<Movie> _latest;
+
+  get latest => Movie();
+
+  setMovie({List<Movie> latest}) {
+    _latest = latest;
     notifyListeners();
   }
 
-  get mainImg => _mainImg;
-
-  set mainImg(String mainImg) {
-    _mainImg = mainImg;
-    notifyListeners();
-  }
-
-  Movie _movie;
-
-  Movie get getMovie => _movie;
-
-  void setMovie({Movie movie}) {
-    _movie = movie;
+  getMovies(context) {
+    getLatest();
     notifyListeners();
   }
 

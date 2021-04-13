@@ -9,7 +9,7 @@ class Movie {
   final int rate;
   final List<String> genere;
 
-  const Movie({
+  Movie({
     this.title,
     this.description,
     this.topImg,
