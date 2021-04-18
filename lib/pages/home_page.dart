@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
     SearchPage(),
     FavPage(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

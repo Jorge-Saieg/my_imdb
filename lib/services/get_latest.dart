@@ -3,39 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:my_imdb/classes/movie.dart';
 
 class LatestProvider extends ChangeNotifier {
-  // String _title;
-  // String _mainImg;
+  List<Movie> _peliculas = [];
 
-  // String get title => _title;
+  List<Movie> get peliculas => _peliculas;
 
-  // set title(String title) {
-  //   _title = title;
-  //   notifyListeners();
-  // }
-
-  // get mainImg => _mainImg;
-
-  // set mainImg(String mainImg) {
-  //   _mainImg = mainImg;
-  //   notifyListeners();
-  // }
-
-  // LatestProvider.init() {
-  //   getLatest();
-  // }
-
-  List<Movie> _latest;
-
-  get latest => Movie();
-
-  setMovie({List<Movie> latest}) {
-    _latest = latest;
+  void setPeluculas(List<Movie> peliculas) {
+    _peliculas = peliculas;
     notifyListeners();
   }
 
-  getMovies(context) {
+  LatestProvider() {
     getLatest();
-    notifyListeners();
   }
 
   Future<List<Movie>> getLatest() async {
@@ -47,8 +25,8 @@ class LatestProvider extends ChangeNotifier {
 
       var listOfMovies =
           json.map((latestJson) => Movie.fromJson(latestJson)).toList();
-
-      return List<Movie>.from(listOfMovies);
+      var peliculas = List<Movie>.from(listOfMovies);
+      return peliculas;
     } catch (e) {
       print(e);
       return [];

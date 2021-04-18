@@ -31,5 +31,3 @@ class Movie {
     );
   }
 }
-
-// Future<List<Movie>> popularMovies = getPopular();

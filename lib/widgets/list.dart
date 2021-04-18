@@ -16,9 +16,6 @@ class ListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final prov = Provider.of<LatestProvider>(context,
-        listen: false); /* le agregue esto... */
-    prov.getMovies(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -38,11 +35,11 @@ class ListWidget extends StatelessWidget {
           height: 260,
           child: Consumer<LatestProvider>(
             builder: (context, data, child) => ListView.builder(
-              itemCount: 3,
+              itemCount: data.peliculas.length,
               itemBuilder: (context, index) => MovieCard(
                 //aca me devuelve null no se bien que esta mal debe ser algo del provider en el archivo get_latest mil gracias...
-                title: prov.latest,
-                imgUrl: data.latest,
+                title: data.peliculas[index].title,
+                imgUrl: data.peliculas[index].mainImg,
               ),
               scrollDirection: Axis.horizontal,
               // shrinkWrap: true,
