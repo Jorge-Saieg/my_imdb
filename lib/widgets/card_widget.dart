@@ -22,7 +22,9 @@ class MovieCard extends StatelessWidget {
           builder: (context) => MovieDetails(),
         ),
       ),
-      child: Card(
+      child: Container(
+        width: 180,
+        child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           margin: EdgeInsets.fromLTRB(15, 20, 0, 20),
@@ -44,13 +46,15 @@ class MovieCard extends StatelessWidget {
                     //   fit: BoxFit.fitHeight,
                     // ),
                     Image.network(
-                      'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/$imgUrl',
-                      width: 130,
+                      'https://image.tmdb.org/t/p/w200/$imgUrl',
+                      width: 180,
                     ),
                     Container(
                       padding: EdgeInsets.all(3),
                       child: Text(
                         title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 16),
                       ),
                     )
@@ -69,7 +73,9 @@ class MovieCard extends StatelessWidget {
                 ),
               ],
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

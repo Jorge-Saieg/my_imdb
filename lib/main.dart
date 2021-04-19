@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_imdb/pages/home_page.dart';
-import 'package:my_imdb/services/get_latest.dart';
+
 import 'package:provider/provider.dart';
+
+import 'package:my_imdb/pages/home_page.dart';
+import 'package:my_imdb/services/get_popular.dart';
+import 'package:my_imdb/services/get_rated.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => LatestProvider())
+        ChangeNotifierProvider(create: (context) => RatedProvider()),
+        ChangeNotifierProvider(create: (context) => PopularProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

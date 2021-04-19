@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_imdb/services/get_latest.dart';
-import 'package:my_imdb/widgets/card.dart';
+import 'package:my_imdb/services/get_rated.dart';
+import 'package:my_imdb/widgets/card_widget.dart';
 import 'package:provider/provider.dart';
 
 class ListWidget extends StatelessWidget {
   final header;
-  final movie;
+  final provider;
 
   const ListWidget({
     Key key,
     this.header,
-    this.movie,
+    this.provider,
   }) : super(key: key);
 
   @override
@@ -32,43 +32,18 @@ class ListWidget extends StatelessWidget {
           ),
         ),
         Container(
-          height: 260,
-          child: Consumer<LatestProvider>(
+          height: 315,
+          child: Consumer<provider>(
             builder: (context, data, child) => ListView.builder(
               itemCount: data.peliculas.length,
               itemBuilder: (context, index) => MovieCard(
-                //aca me devuelve null no se bien que esta mal debe ser algo del provider en el archivo get_latest mil gracias...
                 title: data.peliculas[index].title,
                 imgUrl: data.peliculas[index].mainImg,
               ),
               scrollDirection: Axis.horizontal,
-              // shrinkWrap: true,
             ),
           ),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.fromLTRB(15, 20, 0, 0),
-        //   child: Text(
-        //     'Populares',
-        //     style: GoogleFonts.montserrat(
-        //         textStyle: TextStyle(
-        //       fontWeight: FontWeight.bold,
-        //       fontSize: 21,
-        //     )),
-        //   ),
-        // ),
-        // Container(
-        //   height: 260,
-        //   child: ListView(
-        //     scrollDirection: Axis.horizontal,
-        //     shrinkWrap: true,
-        //     children: [
-        //       MovieCard(),
-        //       MovieCard(),
-        //       MovieCard(),
-        //     ],
-        //   ),
-        // ),
       ],
     );
   }
