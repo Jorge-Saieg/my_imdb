@@ -38,8 +38,14 @@ class ListWidget extends StatelessWidget {
             builder: (context, data, child) => ListView.builder(
               itemCount: data.peliculas.length,
               itemBuilder: (context, index) => MovieCard(
+                topImg: data.peliculas[index].topImg,
                 title: data.peliculas[index].title,
                 imgUrl: data.peliculas[index].mainImg,
+                description: data.peliculas[index].description,
+                genre: data.peliculas[index].genre,
+                id: data.peliculas[index].id,
+                rate: data.peliculas[index].rate,
+                relaseDate: data.peliculas[index].relaseDate,
               ),
               scrollDirection: Axis.horizontal,
             ),

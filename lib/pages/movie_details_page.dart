@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_imdb/classes/genre.dart';
 import 'package:my_imdb/pages/fav_page.dart';
 import 'package:my_imdb/pages/movie_list_page.dart';
 import 'package:my_imdb/pages/search_page.dart';
@@ -10,7 +11,7 @@ class MovieDetails extends StatefulWidget {
     this.id,
     this.topImg,
     this.title,
-    this.genere,
+    this.genre,
     this.description,
     this.relaseDate,
     this.rate,
@@ -19,7 +20,7 @@ class MovieDetails extends StatefulWidget {
   final int id; /* a confirmar */
   final String topImg;
   final String title;
-  final List<int> genere;
+  final List<int> genre;
   final String description;
   final String relaseDate;
   final String rate;
@@ -28,7 +29,7 @@ class MovieDetails extends StatefulWidget {
   _MovieDetailsState createState() => _MovieDetailsState(
         topImg: topImg,
         title: title,
-        genere: genere,
+        genre: genre,
         description: description,
         rate: rate,
         relaseDate: relaseDate,
@@ -39,7 +40,7 @@ class _MovieDetailsState extends State<MovieDetails> {
   final int id; /* a confirmar */
   final String topImg;
   final String title;
-  final List<int> genere;
+  final List<int> genre;
   final String description;
   final String relaseDate;
   final String rate;
@@ -54,7 +55,7 @@ class _MovieDetailsState extends State<MovieDetails> {
     this.id,
     this.topImg,
     this.title,
-    this.genere,
+    this.genre,
     this.description,
     this.relaseDate,
     this.rate,
@@ -88,9 +89,16 @@ class _MovieDetailsState extends State<MovieDetails> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(title,
+                            Expanded(
+                              child: Text(
+                                title,
                                 style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.bold)),
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                overflow: TextOverflow.fade,
+                              ),
+                            ),
                             Icon(
                               Icons.favorite_border_rounded,
                             )
@@ -100,11 +108,11 @@ class _MovieDetailsState extends State<MovieDetails> {
                       Container(
                         height: 45,
                         child: ListView.builder(
-                          itemCount: genere.length,
+                          itemCount: genre.length,
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           itemBuilder: (context, index) => Container(
-                            child: Text(genere[index].toString()),
+                            child: Text(getGenre(genre[index])),
                             padding: EdgeInsets.all(2),
                             margin: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 5),

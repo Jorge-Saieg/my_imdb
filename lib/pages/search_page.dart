@@ -18,7 +18,7 @@ class _SearchPageState extends State<SearchPage> {
             autofocus: true,
             cursorColor: Colors.amber,
             cursorWidth: 4,
-            cursorHeight: 35,
+            cursorHeight: 25,
             style: TextStyle(fontSize: 20),
             textInputAction: TextInputAction.search,
             decoration: InputDecoration(

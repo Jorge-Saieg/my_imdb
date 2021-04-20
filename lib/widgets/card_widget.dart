@@ -8,7 +8,7 @@ class MovieCard extends StatelessWidget {
     this.title,
     this.imgUrl,
     this.topImg,
-    this.genere,
+    this.genre,
     this.description,
     this.relaseDate,
     this.rate,
@@ -19,7 +19,7 @@ class MovieCard extends StatelessWidget {
   final String title;
   final String imgUrl;
   final String topImg;
-  final List<int> genere;
+  final List<int> genre;
   final String description;
   final String relaseDate;
   final String rate;
@@ -34,7 +34,7 @@ class MovieCard extends StatelessWidget {
           builder: (context) => MovieDetails(
             topImg: topImg,
             title: title,
-            genere: genere,
+            genre: genre,
             description: description,
             rate: rate,
             relaseDate: relaseDate,
@@ -63,15 +63,19 @@ class MovieCard extends StatelessWidget {
                       ),
                       fit: BoxFit.fitWidth,
                     ),
-                    Container(
-                      padding: EdgeInsets.all(3),
-                      child: Text(
-                        title,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 16),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(3),
+                        child: Text(
+                          title,
+                          maxLines: 2,
+                          overflow: TextOverflow.fade,
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Positioned(

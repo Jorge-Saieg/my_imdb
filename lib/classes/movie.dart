@@ -1,5 +1,3 @@
-// import 'package:my_imdb/services/get_popular.dart';
-
 class Movie {
   final int id;
   final String title;
@@ -8,7 +6,7 @@ class Movie {
   final String mainImg;
   final String relaseDate;
   final String rate;
-  final List<int> genere;
+  final List<int> genre;
 
   Movie({
     this.id,
@@ -18,7 +16,7 @@ class Movie {
     this.mainImg,
     this.relaseDate,
     this.rate,
-    this.genere,
+    this.genre,
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
@@ -29,8 +27,8 @@ class Movie {
       topImg: json['backdrop_path'],
       mainImg: json['poster_path'],
       relaseDate: json['release_date'],
-      rate: json['vote_average'] as String,
-      genere: List<int>.from(json['genre_ids']),
+      rate: json['vote_average'].toString(),
+      genre: List<int>.from(json['genre_ids']),
     );
   }
 }
