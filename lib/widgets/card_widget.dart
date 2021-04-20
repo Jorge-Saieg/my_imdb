@@ -4,13 +4,25 @@ import 'package:my_imdb/pages/movie_details_page.dart';
 class MovieCard extends StatelessWidget {
   const MovieCard({
     Key key,
+    this.id,
     this.title,
     this.imgUrl,
+    this.topImg,
+    this.genere,
+    this.description,
+    this.relaseDate,
+    this.rate,
     this.favorite,
   }) : super(key: key);
 
+  final int id; /* a confirmar */
   final String title;
   final String imgUrl;
+  final String topImg;
+  final List<int> genere;
+  final String description;
+  final String relaseDate;
+  final String rate;
   final bool favorite;
 
   @override
@@ -19,7 +31,14 @@ class MovieCard extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => MovieDetails(),
+          builder: (context) => MovieDetails(
+            topImg: topImg,
+            title: title,
+            genere: genere,
+            description: description,
+            rate: rate,
+            relaseDate: relaseDate,
+          ),
         ),
       ),
       child: Container(
@@ -35,19 +54,14 @@ class MovieCard extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    // FadeInImage(
-                    //   placeholder: AssetImage(
-                    //     'assets/images/loading.gif',
-                    //   ),
-                    //   image: NetworkImage(
-                    //     'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1P3ZyEq02wcTMd3iE4ebtLvncvH.jpg',
-                    //     scale: 3.1,
-                    //   ),
-                    //   fit: BoxFit.fitHeight,
-                    // ),
-                    Image.network(
-                      'https://image.tmdb.org/t/p/w200/$imgUrl',
-                      width: 180,
+                    FadeInImage(
+                      placeholder: AssetImage(
+                        'assets/images/loading.gif',
+                      ),
+                      image: NetworkImage(
+                        'https://image.tmdb.org/t/p/w200/$imgUrl',
+                      ),
+                      fit: BoxFit.fitWidth,
                     ),
                     Container(
                       padding: EdgeInsets.all(3),
