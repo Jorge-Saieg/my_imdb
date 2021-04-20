@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:my_imdb/pages/fav_page.dart';
 import 'package:my_imdb/pages/movie_list_page.dart';
 import 'package:my_imdb/pages/search_page.dart';

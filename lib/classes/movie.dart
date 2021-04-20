@@ -7,7 +7,7 @@ class Movie {
   final String topImg;
   final String mainImg;
   final String relaseDate;
-  final double rate;
+  final String rate;
   final List<int> genere;
 
   Movie({
@@ -29,7 +29,7 @@ class Movie {
       topImg: json['backdrop_path'],
       mainImg: json['poster_path'],
       relaseDate: json['release_date'],
-      rate: json['vote_average'],
+      rate: json['vote_average'] as String,
       genere: List<int>.from(json['genre_ids']),
     );
   }

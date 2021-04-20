@@ -12,10 +12,23 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(Icons.search),
-          Text('paciencia...'),
+          TextField(
+            autofocus: true,
+            cursorColor: Colors.amber,
+            cursorWidth: 4,
+            cursorHeight: 35,
+            style: TextStyle(fontSize: 20),
+            textInputAction: TextInputAction.search,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 15),
+              focusColor: Colors.amber,
+
+              // border: OutlineInputBorder(),
+              hintText: 'Buscar',
+            ),
+          ),
         ],
       ),
     );

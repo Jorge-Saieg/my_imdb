@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_imdb/services/get_popular.dart';
 import 'package:my_imdb/services/get_rated.dart';
 import 'package:my_imdb/widgets/card_widget.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +34,7 @@ class ListWidget extends StatelessWidget {
         ),
         Container(
           height: 315,
-          child: Consumer<provider>(
+          child: Consumer<PopularProvider>(
             builder: (context, data, child) => ListView.builder(
               itemCount: data.peliculas.length,
               itemBuilder: (context, index) => MovieCard(
