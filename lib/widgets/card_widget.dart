@@ -1,29 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:my_imdb/models/movie.dart';
 import 'package:my_imdb/pages/movie_details_page.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard({
     Key key,
-    this.id,
-    this.title,
-    this.imgUrl,
-    this.topImg,
-    this.genre,
-    this.description,
-    this.relaseDate,
-    this.rate,
-    this.favorite,
+    this.movie,
   }) : super(key: key);
 
-  final int id; /* a confirmar */
-  final String title;
-  final String imgUrl;
-  final String topImg;
-  final List<int> genre;
-  final String description;
-  final String relaseDate;
-  final String rate;
-  final bool favorite;
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +17,7 @@ class MovieCard extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) => MovieDetails(
-            topImg: topImg,
-            title: title,
-            genre: genre,
-            description: description,
-            rate: rate,
-            relaseDate: relaseDate,
+            movie: movie,
           ),
         ),
       ),
@@ -59,7 +39,7 @@ class MovieCard extends StatelessWidget {
                         'assets/images/loading.gif',
                       ),
                       image: NetworkImage(
-                        'https://image.tmdb.org/t/p/w200/$imgUrl',
+                        'https://image.tmdb.org/t/p/w200/${movie.mainImg}',
                       ),
                       fit: BoxFit.fitWidth,
                     ),
@@ -67,9 +47,9 @@ class MovieCard extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.all(3),
                         child: Text(
-                          title,
+                          movie.title,
                           maxLines: 2,
-                          overflow: TextOverflow.fade,
+                          // overflow: TextOverflow.fade,
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -82,6 +62,7 @@ class MovieCard extends StatelessWidget {
                   right: 0,
                   top: 0,
                   child: FloatingActionButton(
+                    heroTag: Object(),
                     backgroundColor: Colors.transparent,
                     elevation: 10,
                     foregroundColor: Colors.amber,

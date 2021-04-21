@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:my_imdb/classes/movie.dart';
+import 'package:my_imdb/models/movie.dart';
 
 class PopularProvider extends ChangeNotifier {
   List<Movie> _peliculas = [];

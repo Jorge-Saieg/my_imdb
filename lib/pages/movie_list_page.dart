@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_imdb/services/get_popular.dart';
-import 'package:my_imdb/services/get_rated.dart';
-import 'package:my_imdb/widgets/list_widget.dart';
+import 'package:my_imdb/widgets/popular_list_widget.dart';
+import 'package:my_imdb/widgets/rated_list_widget.dart';
 
 class MovieList extends StatelessWidget {
   const MovieList({Key key}) : super(key: key);
@@ -10,13 +9,11 @@ class MovieList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        ListWidget(
+        RatedListWidget(
           header: 'Mejores Valoradas',
-          provider: RatedProvider,
         ),
-        ListWidget(
+        PopularListWidget(
           header: 'Populares',
-          provider: PopularProvider,
         ),
       ],
     );

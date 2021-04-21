@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_imdb/classes/genre.dart';
+import 'package:my_imdb/models/genre.dart';
+import 'package:my_imdb/models/movie.dart';
 import 'package:my_imdb/pages/fav_page.dart';
 import 'package:my_imdb/pages/movie_list_page.dart';
 import 'package:my_imdb/pages/search_page.dart';
@@ -8,42 +9,16 @@ import 'package:my_imdb/pages/search_page.dart';
 class MovieDetails extends StatefulWidget {
   const MovieDetails({
     Key key,
-    this.id,
-    this.topImg,
-    this.title,
-    this.genre,
-    this.description,
-    this.relaseDate,
-    this.rate,
+    this.movie,
   }) : super(key: key);
 
-  final int id; /* a confirmar */
-  final String topImg;
-  final String title;
-  final List<int> genre;
-  final String description;
-  final String relaseDate;
-  final String rate;
+  final Movie movie;
 
   @override
-  _MovieDetailsState createState() => _MovieDetailsState(
-        topImg: topImg,
-        title: title,
-        genre: genre,
-        description: description,
-        rate: rate,
-        relaseDate: relaseDate,
-      );
+  _MovieDetailsState createState() => _MovieDetailsState();
 }
 
 class _MovieDetailsState extends State<MovieDetails> {
-  final int id; /* a confirmar */
-  final String topImg;
-  final String title;
-  final List<int> genre;
-  final String description;
-  final String relaseDate;
-  final String rate;
   int _currentIndex = 0;
   final List<Widget> _pages = [
     MovieList(),
@@ -51,15 +26,7 @@ class _MovieDetailsState extends State<MovieDetails> {
     FavPage(),
   ];
 
-  _MovieDetailsState({
-    this.id,
-    this.topImg,
-    this.title,
-    this.genre,
-    this.description,
-    this.relaseDate,
-    this.rate,
-  });
+  _MovieDetailsState();
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +44,7 @@ class _MovieDetailsState extends State<MovieDetails> {
           : ListView(
               children: [
                 Image.network(
-                  'https://image.tmdb.org/t/p/w500/$topImg',
+                  'https://image.tmdb.org/t/p/w500/${widget.movie.topImg}',
                 ),
                 Padding(
                   padding: const EdgeInsets.all(15),
@@ -91,7 +58,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                           children: [
                             Expanded(
                               child: Text(
-                                title,
+                                widget.movie.title,
                                 style: TextStyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
@@ -108,11 +75,11 @@ class _MovieDetailsState extends State<MovieDetails> {
                       Container(
                         height: 45,
                         child: ListView.builder(
-                          itemCount: genre.length,
+                          itemCount: widget.movie.genre.length,
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           itemBuilder: (context, index) => Container(
-                            child: Text(getGenre(genre[index])),
+                            child: Text(getGenre(widget.movie.genre[index])),
                             padding: EdgeInsets.all(2),
                             margin: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 5),
@@ -123,7 +90,8 @@ class _MovieDetailsState extends State<MovieDetails> {
                           ),
                         ),
                       ),
-                      Text(description, style: TextStyle(fontSize: 18)),
+                      Text(widget.movie.description,
+                          style: TextStyle(fontSize: 18)),
                       SizedBox(
                         height: 30,
                       ),
@@ -138,7 +106,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                                 size: 30,
                               ),
                               Text(
-                                rate,
+                                widget.movie.rate,
                                 style: TextStyle(fontSize: 26),
                               )
                             ],
@@ -146,7 +114,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                           Column(
                             children: [
                               Text('Fecha de Estreno'),
-                              Text(relaseDate),
+                              Text(widget.movie.relaseDate),
                             ],
                           )
                         ],

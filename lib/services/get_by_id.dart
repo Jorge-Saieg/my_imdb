@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:my_imdb/classes/movie.dart';
+import 'package:my_imdb/models/movie.dart';
 
 Future<List<Movie>> getById(int id) async {
   try {
