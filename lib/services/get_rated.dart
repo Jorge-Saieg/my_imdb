@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:my_imdb/classes/movie.dart';
+import 'package:my_imdb/models/movie.dart';
 
 class RatedProvider extends ChangeNotifier {
   List<Movie> _peliculas = [];
@@ -25,7 +25,8 @@ class RatedProvider extends ChangeNotifier {
 
       var listOfMovies =
           json.map((ratedJson) => Movie.fromJson(ratedJson)).toList();
-      var peliculas = List<Movie>.from(listOfMovies);
+
+      List<Movie> peliculas = List<Movie>.from(listOfMovies);
       setPeluculas(peliculas);
       return peliculas;
     } catch (e) {
