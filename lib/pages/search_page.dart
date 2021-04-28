@@ -8,6 +8,14 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  final textValue = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    textValue.addListener(() => setState(() {}));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -15,6 +23,7 @@ class _SearchPageState extends State<SearchPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           TextField(
+            controller: textValue,
             autofocus: true,
             cursorColor: Colors.amber,
             cursorWidth: 4,
@@ -22,9 +31,21 @@ class _SearchPageState extends State<SearchPage> {
             style: TextStyle(fontSize: 20),
             textInputAction: TextInputAction.search,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 15),
+              prefixIcon: Icon(
+                Icons.search,
+                color: Colors.amber,
+                size: 30,
+              ),
+              suffixIcon: textValue.text.isEmpty
+                  ? Container(width: 0)
+                  : IconButton(
+                      icon: Icon(
+                        Icons.close,
+                      ),
+                      iconSize: 30,
+                      onPressed: () => textValue.clear(),
+                    ),
               focusColor: Colors.amber,
-
               // border: OutlineInputBorder(),
               hintText: 'Buscar',
             ),

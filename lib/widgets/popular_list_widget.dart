@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'package:my_imdb/services/get_popular.dart';
+import 'package:my_imdb/providers/get_popular.dart';
 import 'package:my_imdb/widgets/card_widget.dart';
 
 class PopularListWidget extends StatelessWidget {

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:my_imdb/models/movie.dart';
 import 'package:my_imdb/pages/movie_details_page.dart';
+import 'package:my_imdb/providers/favorites_provider.dart';
+import 'package:my_imdb/widgets/fav_btn_widget.dart';
+import 'package:provider/provider.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard({
@@ -61,14 +65,14 @@ class MovieCard extends StatelessWidget {
                 Positioned(
                   right: 0,
                   top: 0,
-                  child: FloatingActionButton(
-                    heroTag: Object(),
-                    backgroundColor: Colors.transparent,
-                    elevation: 10,
-                    foregroundColor: Colors.amber,
-                    onPressed: null,
-                    child: Icon(Icons.favorite_border),
-                  ),
+                  child: FavBtn(movie: movie),
+                  // Consumer<FavoritesProvider>(
+                  //   builder: (context, value, child) => IconButton(
+                  //     icon: value.favIcon(movie),
+                  //     color: Colors.amber,
+                  //     onPressed: value.setFavorite(movie),
+                  //   ),
+                  // ),
                 ),
               ],
             ),

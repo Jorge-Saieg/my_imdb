@@ -5,6 +5,7 @@ import 'package:my_imdb/models/movie.dart';
 import 'package:my_imdb/pages/fav_page.dart';
 import 'package:my_imdb/pages/movie_list_page.dart';
 import 'package:my_imdb/pages/search_page.dart';
+import 'package:my_imdb/widgets/fav_btn_widget.dart';
 
 class MovieDetails extends StatefulWidget {
   const MovieDetails({
@@ -66,9 +67,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                                 overflow: TextOverflow.fade,
                               ),
                             ),
-                            Icon(
-                              Icons.favorite_border_rounded,
-                            )
+                            FavBtn(movie: widget.movie),
+                            // Icon(
+                            //   Icons.favorite_border_rounded,
+                            // )
                           ],
                         ),
                       ),
