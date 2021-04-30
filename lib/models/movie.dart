@@ -1,5 +1,4 @@
 class Movie {
-  final favorite;
   final int id;
   final String title;
   final String description;
@@ -10,7 +9,6 @@ class Movie {
   final List<int> genre;
 
   Movie({
-    this.favorite,
     this.id,
     this.title,
     this.description,

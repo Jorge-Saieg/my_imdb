@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:my_imdb/models/movie.dart';
 
 class FavoritesProvider extends ChangeNotifier {
@@ -7,6 +10,13 @@ class FavoritesProvider extends ChangeNotifier {
   List<Movie> get favorites => _favorites;
 
   FavoritesProvider();
+
+  Future<bool> createList() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getStringList('favorites') ??
+        await prefs.setStringList('favorites', []);
+    // notifyListeners();
+  }
 
   setFavorite(Movie movie) {
     if (_favorites.contains(movie)) {
