@@ -35,7 +35,7 @@ class ResultCard extends StatelessWidget {
             child: Row(
               children: [
                 Image.network(
-                    'https://image.tmdb.org/t/p/w200/6Wdl9N6dL0Hi0T1qJLWSz6gMLbd.jpg'),
+                    'https://image.tmdb.org/t/p/w200${movie.mainImg}'),
                 Container(
                   padding: EdgeInsets.all(10),
                   width: 258,
@@ -47,7 +47,7 @@ class ResultCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Mortal Kombat',
+                            movie.title,
                             maxLines: 2,
                             style: TextStyle(
                               fontSize: 20,
@@ -58,7 +58,7 @@ class ResultCard extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        'Un boxeador fracasado descubre un secreto familiar que lo lleva a un torneo místico llamado Mortal Kombat donde se encuentra con un grupo de guerreros que luchan hasta la muerte para salvar los reinos del malvado hechicero Shang Tsung.',
+                        movie.description,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 4,
                       )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_imdb/providers/favorites_provider.dart';
+import 'package:my_imdb/providers/search_provider.dart';
 
 import 'package:provider/provider.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => RatedProvider()),
         ChangeNotifierProvider(create: (context) => PopularProvider()),
         ChangeNotifierProvider(create: (context) => FavoritesProvider()),
+        ChangeNotifierProvider(create: (context) => SearchProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

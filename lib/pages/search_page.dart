@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_imdb/models/movie.dart';
+
+import 'package:provider/provider.dart';
+
+import 'package:my_imdb/providers/search_provider.dart';
 import 'package:my_imdb/widgets/result_widget.dart';
 
 class SearchPage extends StatefulWidget {
@@ -9,20 +14,21 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final textValue = TextEditingController();
+  final controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    textValue.addListener(() => setState(() {}));
+    controller.addListener(() => setState(() {}));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    String textValue = controller.text;
+    return ListView(
       children: [
         TextField(
-          controller: textValue,
+          controller: controller,
           autofocus: true,
           cursorColor: Colors.amber,
           cursorWidth: 4,
@@ -35,26 +41,24 @@ class _SearchPageState extends State<SearchPage> {
               color: Colors.amber,
               size: 30,
             ),
-            suffixIcon: textValue.text.isEmpty
+            suffixIcon: textValue.isEmpty
                 ? Container(width: 0)
                 : IconButton(
                     icon: Icon(
                       Icons.close,
                     ),
                     iconSize: 30,
-                    onPressed: () => textValue.clear(),
+                    onPressed: () => controller.clear(),
                   ),
             focusColor: Colors.amber,
             // border: OutlineInputBorder(),
             hintText: 'Buscar',
           ),
+          onSubmitted: (textValue) {
+            SearchProvider(textValue: textValue);
+            print(SearchProvider().peliculas);
+          },
         ),
-        ListView(
-          shrinkWrap: true,
-          children: [
-            ResultCard(),
-          ],
-        )
       ],
     );
   }
