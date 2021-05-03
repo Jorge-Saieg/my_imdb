@@ -55,10 +55,20 @@ class _SearchPageState extends State<SearchPage> {
             hintText: 'Buscar',
           ),
           onSubmitted: (textValue) {
-            SearchProvider(textValue: textValue);
-            print(SearchProvider().peliculas);
+            SearchProvider().getSearch(textValue);
           },
         ),
+        Consumer<SearchProvider>(
+          builder: (context, data, child) => data.peliculas.isNotEmpty
+              ? ListView.builder(
+                  itemCount: data.peliculas.length,
+                  itemBuilder: (context, index) => ResultCard(
+                    movie: data.peliculas[index],
+                  ),
+                  shrinkWrap: true,
+                )
+              : Container(),
+        )
       ],
     );
   }

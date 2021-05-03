@@ -21,14 +21,14 @@ class Movie {
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
-      id: json['id'],
-      title: json['title'],
-      description: json['overview'],
+      id: json['id'] ?? 00,
+      title: json['title'] ?? 'no data',
+      description: json['overview'] ?? 'no data',
       topImg: json['backdrop_path'],
       mainImg: json['poster_path'],
-      relaseDate: json['release_date'],
-      rate: json['vote_average'].toString(),
-      genre: List<int>.from(json['genre_ids']),
+      relaseDate: json['release_date'] ?? 'no data',
+      rate: json['vote_average'].toString() ?? 'no data',
+      genre: List<int>.from(json['genre_ids']) ?? [],
     );
   }
 }

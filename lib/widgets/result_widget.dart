@@ -34,8 +34,10 @@ class ResultCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Row(
               children: [
-                Image.network(
-                    'https://image.tmdb.org/t/p/w200${movie.mainImg}'),
+                movie.mainImg == null
+                    ? Container()
+                    : Image.network(
+                        'https://image.tmdb.org/t/p/w200${movie.mainImg}'),
                 Container(
                   padding: EdgeInsets.all(10),
                   width: 258,

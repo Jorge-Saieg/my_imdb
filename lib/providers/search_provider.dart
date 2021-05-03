@@ -14,8 +14,8 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  SearchProvider({textValue}) {
-    getSearch(textValue);
+  SearchProvider() {
+    
     notifyListeners();
   }
 
