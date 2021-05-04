@@ -25,6 +25,8 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     String textValue = controller.text;
+    List<Movie> listaResultados = [];
+
     return ListView(
       children: [
         TextField(
@@ -54,21 +56,43 @@ class _SearchPageState extends State<SearchPage> {
             // border: OutlineInputBorder(),
             hintText: 'Buscar',
           ),
-          onSubmitted: (textValue) {
-            SearchProvider().getSearch(textValue);
+          onSubmitted: (textValue) async {
+            listaResultados = await SearchProvider().getSearch(textValue);
+            print(listaResultados);
+            setState(() {});
           },
         ),
-        Consumer<SearchProvider>(
-          builder: (context, data, child) => data.peliculas.isNotEmpty
-              ? ListView.builder(
-                  itemCount: data.peliculas.length,
-                  itemBuilder: (context, index) => ResultCard(
-                    movie: data.peliculas[index],
-                  ),
-                  shrinkWrap: true,
-                )
-              : Container(),
-        )
+        Text(listaResultados.toString()),
+        // no entiendo pq con el print (linea 61) se imprime y en esta linea no logro mostrarlo...
+
+        // alternativa 1
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: listaResultados.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ResultCard(
+              movie: listaResultados[index],
+            );
+          },
+        ),
+
+        // alternativa 2
+        // Consumer<SearchProvider>(
+        //   builder: (context, data, child) => Text(data.peliculas.toString()),
+        // )
+
+        // alternativa 3
+        // Consumer<SearchProvider>(
+        //   builder: (context, data, child) => data.peliculas != []
+        //       ? ListView.builder(
+        //           itemCount: data.peliculas.length,
+        //           itemBuilder: (context, index) => ResultCard(
+        //             movie: data.peliculas[index],
+        //           ),
+        //           shrinkWrap: true,
+        //         )
+        //       : Container(),
+        // )
       ],
     );
   }

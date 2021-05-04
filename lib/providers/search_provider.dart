@@ -31,7 +31,7 @@ class SearchProvider extends ChangeNotifier {
 
       List<Movie> peliculas = List<Movie>.from(listOfMovies);
       setPeluculas(peliculas);
-      return [];
+      return _peliculas;
     } catch (e) {
       print(e);
       return [];
