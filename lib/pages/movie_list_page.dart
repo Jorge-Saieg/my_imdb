@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:my_imdb/widgets/popular_list_widget.dart';
 import 'package:my_imdb/widgets/rated_list_widget.dart';
 

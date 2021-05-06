@@ -20,7 +20,7 @@ class FavoritesProvider extends ChangeNotifier {
 
   setFavorite(Movie movie) {
     if (_favorites.contains(movie)) {
-      _favorites.removeWhere((item) => item.id == movie.id);
+      _favorites.removeWhere((item) => item == movie);
     } else {
       _favorites.add(movie);
     }

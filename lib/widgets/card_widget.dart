@@ -51,7 +51,7 @@ class MovieCard extends StatelessWidget {
                         child: Text(
                           movie.title,
                           maxLines: 2,
-                          // overflow: TextOverflow.fade,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: 16,
                           ),

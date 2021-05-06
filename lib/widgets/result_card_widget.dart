@@ -35,9 +35,17 @@ class ResultCard extends StatelessWidget {
             child: Row(
               children: [
                 movie.mainImg == null
-                    ? Container()
-                    : Image.network(
-                        'https://image.tmdb.org/t/p/w200${movie.mainImg}'),
+                    ? Container(
+                        width: 86.7,
+                        child: Center(
+                            child: Text('🎬',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 30))))
+                    : Expanded(
+                        child: Image.network(
+                          'https://image.tmdb.org/t/p/w200${movie.mainImg}',
+                        ),
+                      ),
                 Container(
                   padding: EdgeInsets.all(10),
                   width: 258,
@@ -48,21 +56,26 @@ class ResultCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            movie.title,
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                          Expanded(
+                            child: Text(
+                              movie.title,
+                              maxLines: 2,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                          Container(height: 40, child: FavBtn()),
+                          Container(height: 40, child: FavBtn(movie: movie)),
                         ],
                       ),
-                      Text(
-                        movie.description,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 4,
+                      SizedBox(height: 10),
+                      Expanded(
+                        child: Text(
+                          movie.description,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                        ),
                       )
                     ],
                   ),

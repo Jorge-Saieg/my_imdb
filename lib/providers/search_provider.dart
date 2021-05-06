@@ -1,7 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
+import 'package:dio/dio.dart';
+
 import 'package:my_imdb/models/movie.dart';
-import 'package:my_imdb/widgets/result_widget.dart';
+import 'package:my_imdb/widgets/result_card_widget.dart';
 import 'package:provider/provider.dart';
 
 class SearchProvider extends ChangeNotifier {

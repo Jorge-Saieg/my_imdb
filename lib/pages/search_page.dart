@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_imdb/models/movie.dart';
 
 import 'package:provider/provider.dart';
 
 import 'package:my_imdb/providers/search_provider.dart';
-import 'package:my_imdb/widgets/result_widget.dart';
+import 'package:my_imdb/widgets/result_card_widget.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key key}) : super(key: key);
@@ -25,7 +24,8 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     String textValue = controller.text;
-    List<Movie> listaResultados = [];
+
+    final searchProvider = Provider.of<SearchProvider>(context);
 
     return ListView(
       children: [
@@ -57,42 +57,29 @@ class _SearchPageState extends State<SearchPage> {
             hintText: 'Buscar',
           ),
           onSubmitted: (textValue) async {
-            listaResultados = await SearchProvider().getSearch(textValue);
-            print(listaResultados);
-            setState(() {});
+            if (textValue.isNotEmpty) {
+              await searchProvider.getSearch(textValue);
+            }
           },
         ),
-        Text(listaResultados.toString()),
-        // no entiendo pq con el print (linea 61) se imprime y en esta linea no logro mostrarlo...
-
-        // alternativa 1
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: listaResultados.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ResultCard(
-              movie: listaResultados[index],
-            );
-          },
-        ),
-
-        // alternativa 2
-        // Consumer<SearchProvider>(
-        //   builder: (context, data, child) => Text(data.peliculas.toString()),
-        // )
-
-        // alternativa 3
-        // Consumer<SearchProvider>(
-        //   builder: (context, data, child) => data.peliculas != []
-        //       ? ListView.builder(
-        //           itemCount: data.peliculas.length,
-        //           itemBuilder: (context, index) => ResultCard(
-        //             movie: data.peliculas[index],
-        //           ),
-        //           shrinkWrap: true,
-        //         )
-        //       : Container(),
-        // )
+        searchProvider.peliculas.isNotEmpty
+            ? ListView.builder(
+                shrinkWrap: true,
+                itemCount: searchProvider.peliculas.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ResultCard(
+                    movie: searchProvider.peliculas[index],
+                  );
+                },
+              )
+            : Container(
+                child: Center(
+                    heightFactor: 6,
+                    child: Text(
+                      'Buscate algo...',
+                      style: TextStyle(fontSize: 22, color: Colors.grey[700]),
+                    )),
+              ),
       ],
     );
   }
