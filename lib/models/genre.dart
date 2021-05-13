@@ -1,31 +1,31 @@
-class Genre {
-  final int id;
-  final String name;
+// class Genre {
+//   final int id;
+//   final String name;
 
-  Genre({this.id, this.name});
+//   Genre({this.id, this.name});
 
-  factory Genre.fromJson(Map<String, dynamic> json) {
-    return Genre(
-      id: json['id'],
-      name: json['name'],
-    );
-  }
-}
+//   factory Genre.fromJson(Map<String, dynamic> json) {
+//     return Genre(
+//       id: json['id'],
+//       name: json['name'],
+//     );
+//   }
+// }
 
-class GenreList {
-  final List<Genre> genres;
+// class GenreList {
+//   final List<Genre> genres;
 
-  GenreList({this.genres});
+//   GenreList({this.genres});
 
-  factory GenreList.fromJson(List jsonList) {
-    final List<Genre> genres = [];
+//   factory GenreList.fromJson(List jsonList) {
+//     final List<Genre> genres = [];
 
-    for (var item in jsonList) {
-      genres.add(Genre.fromJson(item));
-    }
-    return GenreList(genres: genres);
-  }
-}
+//     for (var item in jsonList) {
+//       genres.add(Genre.fromJson(item));
+//     }
+//     return GenreList(genres: genres);
+//   }
+// }
 
 String getGenre(int id) {
   String genre;

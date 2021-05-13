@@ -31,4 +31,17 @@ class Movie {
       genre: List<int>.from(json['genre_ids']) ?? [],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'topImg': topImg,
+      'mainImg': mainImg,
+      'relaseDate': relaseDate,
+      'rate': rate,
+      'genre': genre,
+    };
+  }
 }

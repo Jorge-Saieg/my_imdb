@@ -8,6 +8,8 @@ import 'package:my_imdb/providers/favorites_provider.dart';
 class FavPage extends StatelessWidget {
   const FavPage({Key key}) : super(key: key);
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Consumer<FavoritesProvider>(

@@ -5,31 +5,32 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:my_imdb/models/movie.dart';
 
 class FavoritesProvider extends ChangeNotifier {
-  List<Movie> _favorites = [];
+  List<String> _favorites = [];
 
-  List<Movie> get favorites => _favorites;
+  List<String> get favorites => _favorites;
 
   FavoritesProvider();
 
-  Future<bool> createList() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getStringList('favorites') ??
-        await prefs.setStringList('favorites', []);
-    // notifyListeners();
-  }
+  // Future<void> createList({String value}) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   _favorites.isEmpty
+  //       ? prefs.setStringList('favorites', [])
+  //       : prefs.getStringList('favorites');
+  //   // notifyListeners();
+  // }
 
-  setFavorite(Movie movie) {
-    if (_favorites.contains(movie)) {
-      _favorites.removeWhere((item) => item == movie);
+  setFavorite(String id) {
+    if (_favorites.contains(id)) {
+      _favorites.removeWhere((item) => item == id);
     } else {
-      _favorites.add(movie);
+      _favorites.add(id);
     }
     notifyListeners();
   }
 
-  Icon favIcon(Movie movie) {
+  Icon favIcon(String id) {
     IconData icon;
-    if (_favorites.contains(movie)) {
+    if (_favorites.contains(id)) {
       icon = Icons.favorite;
     } else {
       icon = Icons.favorite_border;

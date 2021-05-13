@@ -66,7 +66,10 @@ class ResultCard extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(height: 40, child: FavBtn(movie: movie)),
+                          Container(
+                            height: 40,
+                            child: FavBtn(id: movie.id.toString()),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
