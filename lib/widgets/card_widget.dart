@@ -63,7 +63,7 @@ class MovieCard extends StatelessWidget {
                 Positioned(
                   right: 0,
                   top: 0,
-                  child: FavBtn(id: movie.id.toString()),
+                  child: FavBtn(movie: movie),
                 ),
               ],
             ),

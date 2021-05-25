@@ -16,14 +16,14 @@ class IdsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  final favList = Provider.of<FavoritesProvider>(context);
+  // final favList = Provider.of<FavoritesProvider>(context);
 
-  IdsProvider() {
-    for (var item in favList.favorites) {
-      Movie movie = getById(item);
-      _peliculas.add(movie);
-    }
-  }
+  // IdsProvider() {
+  //   for (var item in favList.favorites) {
+  //     Movie movie = getById(item);
+  //     _peliculas.add(movie);
+  //   }
+  // }
 
   Future<Movie> getById(String id) async {
     try {
