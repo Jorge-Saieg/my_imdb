@@ -7,9 +7,10 @@ import 'package:my_imdb/models/movie.dart';
 
 class FavoritesProvider extends ChangeNotifier {
   List<String> _favorites = [];
+  List<Movie> _favoriteMovies = [];
 
   List<Movie> get favorites {
-    List<Movie> list = _favorites.map((item) => jsonDecode(item));
+    List<Movie> list = _favoriteMovies.map((item) => item).toList();
     return list;
   }
 
@@ -26,9 +27,14 @@ class FavoritesProvider extends ChangeNotifier {
   setFavorite(Movie movie) {
     if (_favorites.contains(movie.id.toString())) {
       _favorites.removeWhere((item) => item == movie.id.toString());
+      _favoriteMovies
+          .removeWhere((item) => item.id.toString() == movie.id.toString());
     } else {
       _favorites.add(movie.id.toString());
+      _favoriteMovies.add(movie);
     }
+
+    print(_favoriteMovies);
     notifyListeners();
   }
 
