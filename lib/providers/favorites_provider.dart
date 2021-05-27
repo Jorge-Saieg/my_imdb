@@ -14,27 +14,41 @@ class FavoritesProvider extends ChangeNotifier {
     return list;
   }
 
-  FavoritesProvider();
+  FavoritesProvider() {
+    createList();
+  }
 
-  // Future<void> createList({String value}) async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   _favorites.isEmpty
-  //       ? prefs.setStringList('favorites', [])
-  //       : prefs.getStringList('favorites');
-  //   // notifyListeners();
-  // }
+  Future<void> createList({String value}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  setFavorite(Movie movie) {
+    _favorites.isEmpty
+        ? prefs.setStringList('favorites', [])
+        : _favoriteMovies =
+            prefs.getStringList('favorites').map((item) => jsonDecode(item));
+    // _favorites = prefs.getStringList('favorites').map((item) => jsonDecode(item));
+    // notifyListeners();
+  }
+
+  setFavorite(Movie movie) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     if (_favorites.contains(movie.id.toString())) {
       _favorites.removeWhere((item) => item == movie.id.toString());
       _favoriteMovies
           .removeWhere((item) => item.id.toString() == movie.id.toString());
+      prefs.remove('favorites');
+      prefs.setStringList('favorites',
+          _favoriteMovies.map((item) => jsonEncode(item)).toList());
     } else {
       _favorites.add(movie.id.toString());
       _favoriteMovies.add(movie);
+      prefs.remove('favorites');
+      prefs.setStringList('favorites',
+          _favoriteMovies.map((item) => jsonEncode(item)).toList());
     }
-
+    print(prefs.getStringList('favorites'));
     print(_favoriteMovies);
+    print(_favorites);
     notifyListeners();
   }
 
