@@ -6,12 +6,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:my_imdb/models/movie.dart';
 
 class FavoritesProvider extends ChangeNotifier {
-  List<String> _favorites = [];
+  List<String> _favoriteIds = [];
   List<Movie> _favoriteMovies = [];
 
   List<Movie> get favorites {
-    List<Movie> list = _favoriteMovies.map((item) => item).toList();
-    return list;
+    createList();
+    return _favoriteMovies;
   }
 
   FavoritesProvider() {
@@ -21,40 +21,40 @@ class FavoritesProvider extends ChangeNotifier {
   Future<void> createList({String value}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    _favorites.isEmpty
+    prefs.getStringList('favorites').isEmpty
         ? prefs.setStringList('favorites', [])
-        : _favoriteMovies =
-            prefs.getStringList('favorites').map((item) => jsonDecode(item));
-    // _favorites = prefs.getStringList('favorites').map((item) => jsonDecode(item));
-    // notifyListeners();
+        : _favoriteMovies = prefs.getStringList('favorites').map((item) {
+            _favoriteIds.add(jsonDecode(item)['id'].toString());
+            return Movie.fromJson(jsonDecode(item));
+          }).toList();
   }
+
+  // set toggle - item -
 
   setFavorite(Movie movie) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    if (_favorites.contains(movie.id.toString())) {
-      _favorites.removeWhere((item) => item == movie.id.toString());
+    if (_favoriteIds.contains(movie.id.toString())) {
+      _favoriteIds.removeWhere((item) => item == movie.id.toString());
       _favoriteMovies
           .removeWhere((item) => item.id.toString() == movie.id.toString());
-      prefs.remove('favorites');
       prefs.setStringList('favorites',
           _favoriteMovies.map((item) => jsonEncode(item)).toList());
     } else {
-      _favorites.add(movie.id.toString());
+      _favoriteIds.add(movie.id.toString());
       _favoriteMovies.add(movie);
-      prefs.remove('favorites');
       prefs.setStringList('favorites',
           _favoriteMovies.map((item) => jsonEncode(item)).toList());
     }
-    print(prefs.getStringList('favorites'));
+    print('prefs 👉:' + prefs.getStringList('favorites').toString());
     print(_favoriteMovies);
-    print(_favorites);
+    print(_favoriteIds);
     notifyListeners();
   }
 
   Icon favIcon(Movie movie) {
     IconData icon;
-    if (_favorites.contains(movie.id.toString())) {
+    if (_favoriteIds.contains(movie.id.toString())) {
       icon = Icons.favorite;
     } else {
       icon = Icons.favorite_border;

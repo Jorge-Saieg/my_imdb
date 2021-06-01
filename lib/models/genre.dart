@@ -67,6 +67,8 @@ String getGenre(int id) {
     genre = 'Bélica';
   } else if (id == 37) {
     genre = 'Western';
+  } else {
+    genre = 'No especificado';
   }
   return genre;
 }

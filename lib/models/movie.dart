@@ -20,6 +20,18 @@ class Movie {
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
+    if (json['description'] != null) {
+      return Movie(
+        id: json['id'] ?? 00,
+        title: json['title'] ?? 'no data',
+        description: json['description'] ?? 'no data',
+        topImg: json['topImg'],
+        mainImg: json['mainImg'],
+        relaseDate: json['relaseDate'] ?? 'no data',
+        rate: json['rate'].toString() ?? 'no data',
+        genre: json['genre'] != null ? List<int>.from(json['genre']) : [],
+      );
+    }
     return Movie(
       id: json['id'] ?? 00,
       title: json['title'] ?? 'no data',
@@ -28,7 +40,7 @@ class Movie {
       mainImg: json['poster_path'],
       relaseDate: json['release_date'] ?? 'no data',
       rate: json['vote_average'].toString() ?? 'no data',
-      genre: List<int>.from(json['genre_ids']) ?? [],
+      genre: json['genre_ids'] != null ? List<int>.from(json['genre_ids']) : [],
     );
   }
 
