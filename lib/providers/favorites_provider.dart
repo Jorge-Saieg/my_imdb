@@ -8,6 +8,9 @@ import 'package:my_imdb/models/movie.dart';
 class FavoritesProvider extends ChangeNotifier {
   List<String> _favoriteIds = [];
   List<Movie> _favoriteMovies = [];
+  bool _loaded = false;
+
+  bool get getLoaded => _loaded;
 
   List<Movie> get favorites {
     createList();
@@ -18,15 +21,15 @@ class FavoritesProvider extends ChangeNotifier {
     createList();
   }
 
-  Future<void> createList({String value}) async {
+  Future<void> createList() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     prefs.getStringList('favorites').isEmpty
         ? prefs.setStringList('favorites', [])
         : _favoriteMovies = prefs.getStringList('favorites').map((item) {
             _favoriteIds.add(jsonDecode(item)['id'].toString());
             return Movie.fromJson(jsonDecode(item));
           }).toList();
+    _loaded = true;
   }
 
   // set toggle - item -
@@ -52,13 +55,24 @@ class FavoritesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Icon favIcon(Movie movie) {
-    IconData icon;
-    if (_favoriteIds.contains(movie.id.toString())) {
-      icon = Icons.favorite;
+  Future<Icon> favIcon(Movie movie) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getStringList('favorites').isNotEmpty) {
+      if (_favoriteIds.contains(movie.id.toString())) {
+        return Icon(Icons.favorite);
+      } else {
+        return Icon(Icons.favorite_border);
+      }
     } else {
-      icon = Icons.favorite_border;
+      return Icon(Icons.favorite_border);
     }
-    return Icon(icon);
   }
+
+  // Icon favIcon(Movie movie) {
+  //   if (_favoriteIds.contains(movie.id.toString())) {
+  //     return Icon(Icons.favorite);
+  //   } else {
+  //     return Icon(Icons.favorite_border);
+  //   }
+  // }
 }

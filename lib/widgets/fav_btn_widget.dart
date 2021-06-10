@@ -12,12 +12,18 @@ class FavBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<FavoritesProvider>(context);
-    return IconButton(
-      icon: provider.favIcon(movie),
-      color: Colors.amber,
-      onPressed: () {
-        provider.setFavorite(movie);
-      },
-    );
+
+    return FutureBuilder(
+        future: provider.favIcon(movie),
+        builder: (BuildContext context, AsyncSnapshot<Icon> snapshot) {
+          return snapshot.hasData
+              ? IconButton(
+                  icon: snapshot.data,
+                  color: Colors.amber,
+                  onPressed: () {
+                    provider.setFavorite(movie);
+                  })
+              : Container();
+        });
   }
 }
