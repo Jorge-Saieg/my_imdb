@@ -25,33 +25,29 @@ class FavoritesProvider extends ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.getStringList('favorites').isEmpty
         ? prefs.setStringList('favorites', [])
-        : _favoriteMovies = prefs.getStringList('favorites').map((item) {
-            _favoriteIds.add(jsonDecode(item)['id'].toString());
-            return Movie.fromJson(jsonDecode(item));
+        : _favoriteMovies = prefs.getStringList('favorites').map((e) {
+            _favoriteIds.add(jsonDecode(e)['id'].toString());
+            return Movie.fromJson(jsonDecode(e));
           }).toList();
     _loaded = true;
   }
-
-  // set toggle - item -
 
   setFavorite(Movie movie) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     if (_favoriteIds.contains(movie.id.toString())) {
-      _favoriteIds.removeWhere((item) => item == movie.id.toString());
+      _favoriteIds.removeWhere((e) => e == movie.id.toString());
       _favoriteMovies
-          .removeWhere((item) => item.id.toString() == movie.id.toString());
-      prefs.setStringList('favorites',
-          _favoriteMovies.map((item) => jsonEncode(item)).toList());
+          .removeWhere((e) => e.id.toString() == movie.id.toString());
+      prefs.setStringList(
+          'favorites', _favoriteMovies.map((e) => jsonEncode(e)).toList());
     } else {
       _favoriteIds.add(movie.id.toString());
       _favoriteMovies.add(movie);
-      prefs.setStringList('favorites',
-          _favoriteMovies.map((item) => jsonEncode(item)).toList());
+      prefs.setStringList(
+          'favorites', _favoriteMovies.map((e) => jsonEncode(e)).toList());
     }
-    print('prefs 👉:' + prefs.getStringList('favorites').toString());
-    print(_favoriteMovies);
-    print(_favoriteIds);
+
     notifyListeners();
   }
 
@@ -67,12 +63,4 @@ class FavoritesProvider extends ChangeNotifier {
       return Icon(Icons.favorite_border);
     }
   }
-
-  // Icon favIcon(Movie movie) {
-  //   if (_favoriteIds.contains(movie.id.toString())) {
-  //     return Icon(Icons.favorite);
-  //   } else {
-  //     return Icon(Icons.favorite_border);
-  //   }
-  // }
 }

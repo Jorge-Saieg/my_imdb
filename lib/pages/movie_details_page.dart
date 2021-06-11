@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_imdb/models/genre.dart';
+
+import 'package:my_imdb/utils/genre.dart';
 import 'package:my_imdb/models/movie.dart';
 import 'package:my_imdb/pages/fav_page.dart';
 import 'package:my_imdb/pages/movie_list_page.dart';
@@ -68,9 +70,6 @@ class _MovieDetailsState extends State<MovieDetails> {
                               ),
                             ),
                             FavBtn(movie: widget.movie),
-                            // Icon(
-                            //   Icons.favorite_border_rounded,
-                            // )
                           ],
                         ),
                       ),

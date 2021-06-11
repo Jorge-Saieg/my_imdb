@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_imdb/providers/favorites_provider.dart';
-import 'package:my_imdb/providers/search_provider.dart';
 
 import 'package:provider/provider.dart';
 
 import 'package:my_imdb/pages/home_page.dart';
-import 'package:my_imdb/providers/get_popular.dart';
 import 'package:my_imdb/providers/get_rated.dart';
+import 'package:my_imdb/providers/get_popular.dart';
+import 'package:my_imdb/providers/favorites_provider.dart';
+import 'package:my_imdb/providers/search_provider.dart';
 
 void main() {
   runApp(MyApp());

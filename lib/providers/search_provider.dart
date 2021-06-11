@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
+import 'package:provider/provider.dart';
 
 import 'package:my_imdb/models/movie.dart';
 import 'package:my_imdb/widgets/result_card_widget.dart';
-import 'package:provider/provider.dart';
 
 class SearchProvider extends ChangeNotifier {
   List<Movie> _peliculas = [];
@@ -42,7 +42,6 @@ class SearchProvider extends ChangeNotifier {
 
   Widget showResults() {
     Widget results;
-    print(_peliculas);
     _peliculas.isEmpty
         ? results = Center(
             child: CircularProgressIndicator()

@@ -71,12 +71,24 @@ class _SearchPageState extends State<SearchPage> {
                   : IconButton(
                       icon: Icon(
                         Icons.close,
+                        color: Colors.amber,
                       ),
                       iconSize: 30,
                       onPressed: () => controller.clear(),
                     ),
-              // focusColor: Colors.amber,
-              // border: OutlineInputBorder(),
+              enabledBorder: UnderlineInputBorder(
+                borderRadius: BorderRadius.circular(5),
+                borderSide: BorderSide(
+                  color: Colors.grey[800],
+                  width: 2.0,
+                ),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.grey,
+                  width: 2.0,
+                ),
+              ),
               hintText: 'Buscar',
             ),
             onSubmitted: (textValue) async {
