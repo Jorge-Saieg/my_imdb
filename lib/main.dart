@@ -27,12 +27,15 @@ class MyApp extends StatelessWidget {
         title: 'My IMDb',
         theme: ThemeData(
           brightness: Brightness.light,
-          primarySwatch: Colors.grey,
+          primaryColor: Colors.blueGrey[800],
+          scaffoldBackgroundColor: Colors.blueGrey[100],
+          disabledColor: Colors.blue,
           accentColor: Colors.amber,
         ),
         darkTheme: ThemeData(
           brightness: Brightness.dark,
           accentColor: Colors.amber,
+          // scaffoldBackgroundColor: Colors.grey[850],
         ),
         themeMode: ThemeMode.system,
         home: HomePage(),

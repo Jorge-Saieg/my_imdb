@@ -20,8 +20,17 @@ class FavBtn extends StatelessWidget {
               ? IconButton(
                   icon: snapshot.data,
                   color: Colors.amber,
-                  onPressed: () {
-                    provider.setFavorite(movie);
+                  onPressed: () async {
+                    await provider.setFavorite(movie);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                        provider.snackbarMessage,
+                        style: TextStyle(color: Colors.grey[100]),
+                      ),
+                      backgroundColor: Colors.grey[800],
+                      behavior: SnackBarBehavior.fixed,
+                      duration: Duration(seconds: 1),
+                    ));
                   })
               : Container();
         });

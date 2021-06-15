@@ -59,7 +59,7 @@ class _SearchPageState extends State<SearchPage> {
             style: TextStyle(fontSize: 20),
             textInputAction: TextInputAction.search,
             decoration: InputDecoration(
-              fillColor: Colors.grey[850],
+              // fillColor: Colors.grey[850],
               filled: true,
               prefixIcon: Icon(
                 Icons.search,
