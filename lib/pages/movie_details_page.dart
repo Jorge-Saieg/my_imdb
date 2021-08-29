@@ -46,8 +46,18 @@ class _MovieDetailsState extends State<MovieDetails> {
           ? _pages[_currentIndex]
           : ListView(
               children: [
-                Image.network(
-                  'https://image.tmdb.org/t/p/w500/${widget.movie.topImg}',
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 211,
+                  child: widget.movie.topImg == null
+                      ? Center(
+                          child: Text('🎬',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 30)),
+                        )
+                      : Image.network(
+                          'https://image.tmdb.org/t/p/w500/${widget.movie.topImg}',
+                        ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(15),

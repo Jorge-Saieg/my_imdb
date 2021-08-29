@@ -24,7 +24,7 @@ class FavoritesProvider extends ChangeNotifier {
 
   Future<void> createList() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.getStringList('favorites').isEmpty
+    prefs.getStringList('favorites') == null
         ? prefs.setStringList('favorites', [])
         : _favoriteMovies = prefs.getStringList('favorites').map((e) {
             _favoriteIds.add(jsonDecode(e)['id'].toString());
@@ -54,14 +54,14 @@ class FavoritesProvider extends ChangeNotifier {
 
   Future<Icon> favIcon(Movie movie) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getStringList('favorites').isNotEmpty) {
+    if (prefs.getStringList('favorites') == null) {
+      return Icon(Icons.favorite_border);
+    } else {
       if (_favoriteIds.contains(movie.id.toString())) {
         return Icon(Icons.favorite);
       } else {
         return Icon(Icons.favorite_border);
       }
-    } else {
-      return Icon(Icons.favorite_border);
     }
   }
 }
